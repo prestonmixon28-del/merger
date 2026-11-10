@@ -1,2 +1,2 @@
 # Journal
-Write your Journal questions and notes here.
+priorityqueue knows which company is smallest because the company class uses comparable to compare company sizes. If we wnated the largest companies first, we could reverse the compoarisons order
