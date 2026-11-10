@@ -16,8 +16,10 @@ public class Main {
         market.add(new Company("Oscorp", 10000));
         market.add(new Company("Aperture Science", 20000));
 
-        System.out.println("Starting Market:");
-        System.out.println(market);
+        int totalMergers = 0;
+        Company titan = null;
+
+        System.out.println("Starting Corporate Merger Simulation!");
 
         while (market.size() >= 2) {
 
@@ -32,15 +34,37 @@ public class Main {
 
             Company mergedCompany = new Company(newName, newSize);
 
-            market.add(mergedCompany);
+            totalMergers++;
 
             System.out.println("\nMERGER: " + companyA.getName()
                     + " and " + companyB.getName()
                     + " have merged into " + newName
                     + " with size " + newSize + "!");
+
+            if (newSize >= 500000) {
+                titan = mergedCompany;
+                break;
+            }
+
+            market.add(mergedCompany);
         }
 
-        System.out.println("\nRemaining Company:");
-        System.out.println(market.peek());
+        System.out.println("\n===== FINAL REPORT =====");
+
+        if (titan != null) {
+            System.out.println("Industry Titan: " + titan);
+        } else {
+            System.out.println("No titan has emerged.");
+
+            if (!market.isEmpty()) {
+System.out.println("Remaining Company: " + market.peek());
+
+            }
+
+        }
+
+        System.out.println("Total Mergers: " + totalMergers);
+
     }
+
 }
