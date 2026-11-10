@@ -16,17 +16,31 @@ public class Main {
         market.add(new Company("Oscorp", 10000));
         market.add(new Company("Aperture Science", 20000));
 
-        System.out.println("Corporate Merger Market:");
+        System.out.println("Starting Market:");
         System.out.println(market);
 
-        Company smallest = market.poll();
+        while (market.size() >= 2) {
 
-        System.out.println("\nSmallest company:");
-        System.out.println(smallest);
+            Company companyA = market.poll();
+            Company companyB = market.poll();
 
-        market.add(smallest);
+            int newSize = (int) ((companyA.getSize()
+                    + companyB.getSize()) * 1.1);
 
-        System.out.println("\nCompany added back to market:");
-        System.out.println(market);
+            String newName = companyA.getName()
+                    + "-" + companyB.getName();
+
+            Company mergedCompany = new Company(newName, newSize);
+
+            market.add(mergedCompany);
+
+            System.out.println("\nMERGER: " + companyA.getName()
+                    + " and " + companyB.getName()
+                    + " have merged into " + newName
+                    + " with size " + newSize + "!");
+        }
+
+        System.out.println("\nRemaining Company:");
+        System.out.println(market.peek());
     }
 }
